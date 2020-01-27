@@ -28,7 +28,6 @@ export default {
   methods: {
     async getLands () {
       this.lands = await Parse.Cloud.run('findLands', this.busca)
-      console.log(this.lands)
     }
   },
   props: ['busca']

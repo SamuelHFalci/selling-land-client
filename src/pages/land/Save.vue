@@ -93,7 +93,6 @@ export default {
       }, 1000)
     },
     async onReset () {
-      console.log('resetando')
     },
     async saveLand () {
       // let imagem = await new Parse.File('teste', file[0]).save()
@@ -101,7 +100,6 @@ export default {
       params['user'] = this.$store.state.user.user.userName
       // let params = this.land
       Parse.Cloud.run('saveLand', params).then(data => {
-        console.log(data)
       })
     }
   }

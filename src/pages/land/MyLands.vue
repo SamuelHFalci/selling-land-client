@@ -34,7 +34,6 @@ export default {
         }
       }
       this.lands = await Parse.Cloud.run('findLands', params)
-      console.log(this.lands)
     }
   }
 }

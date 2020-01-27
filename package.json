@@ -1,17 +1,18 @@
 {
   "name": "selling-land-client",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A Quasar Framework app",
   "productName": "Quasar App",
   "cordovaId": "org.cordova.quasar.app",
-  "author": "",
+  "author": "Samuel Falci",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue src",
     "test": "echo \"No test specified\" && exit 0",
     "build": "quasar build",
     "start": "node server.js",
-    "heroku-postbuild": "yarn && yarn build"
+    "heroku-postbuild": "yarn && yarn build",
+    "postinstall": "npm install express"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
