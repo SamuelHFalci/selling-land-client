@@ -8,19 +8,20 @@ module.exports = function (ctx) {
     // https://quasar.dev/quasar-cli/cli-documentation/boot-files
     boot: [
       'axios',
-      'parse'
+      'parse',
+      'vue-cropper'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
     css: [
-      'app.sass'
+      'app.styl'
     ],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
     extras: [
       // 'ionicons-v4',
       // 'mdi-v4',
-      // 'fontawesome-v5',
+      'fontawesome-v5',
       // 'eva-icons',
       // 'themify',
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
@@ -45,7 +46,13 @@ module.exports = function (ctx) {
 
       components: [
         'QBtn',
-        'QUploader'
+        'QUploader',
+        'QPageContainer',
+        'QPage',
+        'QCard',
+        'QCarousel',
+        'QCarouselControl',
+        'QCarouselSlide'
       ],
       directives: [],
 
@@ -59,7 +66,7 @@ module.exports = function (ctx) {
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
       scopeHoisting: true,
-      // vueRouterMode: 'history',
+      vueRouterMode: 'history',
       // showProgress: false,
       // gzip: true,
       // analyze: true,
@@ -76,6 +83,10 @@ module.exports = function (ctx) {
           options: {
             formatter: require('eslint').CLIEngine.getFormatter('stylish')
           }
+        })
+        cfg.module.rules.push({
+          test: /\.pug$/,
+          loader: 'pug-plain-loader'
         })
       }
     },

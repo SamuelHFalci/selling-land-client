@@ -1,103 +1,80 @@
-<template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          @click="leftDrawerOpen = !leftDrawerOpen"
-          icon="menu"
-          aria-label="Menu"
-        />
+<template lang="pug">
+  q-layout(view='lHh lpR fFf')
+    q-header.bg-white.text-grey.q-pa-sm
+      q-toolbar
+        q-toolbar-title
+          img(src='../assets/logo_transparent.png' style='width: 150px; cursor: pointer' @click="$router.push('/')")
+        .flex.flex-center.q-gutter-x-md.menu
+          a.link--hover(href='/imovel/cadastrar') ANUNCIAR
+          a.link--hover(v-if='!$store.state.user.token' href='/login') ENTRAR
+          a.link--hover(href='') CADASTRO
+          a.link--hover(href='') CONTATO
+          q-btn-dropdown(
+            no-caps color="primary" flat
+            v-if='$store.state.user.token'
+          )
+            template(v-slot:label)
+              q-item
+                q-item-section(avatar)
+                  q-avatar
+                    img()
 
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
-    </q-header>
-
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-      content-class="bg-grey-2"
-    >
-      <q-list>
-        <q-item-label header>Essential Links</q-item-label>
-        <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="school" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Docs</q-item-label>
-            <q-item-label caption>quasar.dev</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://github.quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="code" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Github</q-item-label>
-            <q-item-label caption>github.com/quasarframework</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://chat.quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="chat" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Discord Chat Channel</q-item-label>
-            <q-item-label caption>chat.quasar.dev</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://forum.quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="record_voice_over" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Forum</q-item-label>
-            <q-item-label caption>forum.quasar.dev</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://twitter.quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="rss_feed" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Twitter</q-item-label>
-            <q-item-label caption>@quasarframework</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://facebook.quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="public" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Facebook</q-item-label>
-            <q-item-label caption>@QuasarFramework</q-item-label>
-          </q-item-section>
-        </q-item>
-      </q-list>
-    </q-drawer>
-
-    <q-page-container>
-      <router-view />
-    </q-page-container>
-  </q-layout>
+                q-item-section
+                  q-item-label
+                    | Olá {{$store.state.user.user.fullName}}
+                  q-item-label(caption)
+                    | {{$store.state.user.user.userName}}
+            q-list
+            q-item(clickable @click="$router.push('/imovel/meus-anuncios')")
+              q-item-section(avatar)
+                q-avatar(icon="fas fa-plus")
+              q-item-section
+                q-item-label Meus Anuncios
+    q-page-container
+      router-view
 </template>
-
 <script>
 export default {
-  name: 'MyLayout',
-
   data () {
     return {
-      leftDrawerOpen: false
+      left: false
     }
   }
 }
 </script>
+<style>
+.menu > a {
+  text-decoration: none;
+  color: #444;
+  font-size: 15px
+}
+.menu > a:hover {
+  text-decoration: none;
+  color: #444;
+  font-size: 15px
+}
+.link--hover {
+  line-height: 2.2;
+  position: relative
+}
+.link--hover:after {
+  transition: width 0.15s linear;
+  will-change: width;
+  background: currentColor;
+  border-radius: 1px;
+  bottom: -4px;
+  content: "";
+  height: 2px;
+  left: 0;
+  position: absolute;
+  width: 0
+}
+.link--hover:hover:after,
+.link--hover[aria-selected]:after {
+  width: 100%
+}
+.link--hover:active:after,
+.link--hover:focus:after {
+  width: 8px
+}
+</style>
