@@ -10,7 +10,7 @@
     "lint": "eslint --ext .js,.vue src",
     "test": "echo \"No test specified\" && exit 0",
     "start": "node server.js",
-    "heroku-postbuild": "yarn && yarn build",
+    "heroku-postbuild": "npm install",
     "postinstall": "npm install express"
   },
   "dependencies": {
