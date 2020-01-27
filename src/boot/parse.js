@@ -14,6 +14,6 @@ export default ({ app, router, Vue }) => {
   //     Parse.serverURL = `${window.location.protocol}//${serverURL}/parse`
   //   }
   // }
-  Parse.serverURL = 'http://all-terra.herokuapp.com/parse'
+  Parse.serverURL = 'https://all-terra.herokuapp.com/parse'
   Vue.prototype.$parse = Parse
 }
