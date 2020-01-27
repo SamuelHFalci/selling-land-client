@@ -40,9 +40,12 @@ export default {
   },
   methods: {
     async login () {
-      await this.$store.dispatch('user/ActionLogin', {
+      this.$q.loading.show()
+      this.$store.dispatch('user/ActionLogin', {
         username: this.username,
         password: this.password
+      }).then(() => {
+        this.$q.loading.hide()
       })
     },
     showResetPassword () {

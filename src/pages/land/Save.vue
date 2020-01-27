@@ -95,11 +95,24 @@ export default {
     async onReset () {
     },
     async saveLand () {
+      this.$q.loading.show()
       // let imagem = await new Parse.File('teste', file[0]).save()
       let params = this.land
       params['user'] = this.$store.state.user.user.userName
       // let params = this.land
       Parse.Cloud.run('saveLand', params).then(data => {
+        this.$q.notify({
+          message: 'Imóvel cadastrado com sucesso',
+          color: 'primary',
+          actions: [
+            { label: 'OK', color: 'white' }
+          ]
+        })
+        this.land.endereco = {}
+        this.land.image = null
+        this.land.imagens = []
+        this.$q.loading.hide()
+        this.$router.push('/imovel/meus-anuncios')
       })
     }
   }
